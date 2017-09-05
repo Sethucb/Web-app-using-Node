@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ombudsman Form</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="my-index.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+	
+</head>
+<body>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h2 class="display-3">Office of the University Ombuds Visitor Intake form</h1>
+	    <p class="lead">We ask visitors to complete this form.You do not need to reveal your name or other identifying information.
+	    All data are kept secretly confidential and are used only for anonymous and aggregated reporting.If you have any questions
+	    or concerns about completing the form,please let the University Ombudsman know.</p>
+	  </div>
+	</div>
+
+	<div class="container">
+
+	
+<table class="table table-hover table-bordered">
+
+  <thead>
+    <tr>
+      <th class="text-center" width="10%" >Number</th>
+      <th width="45%">Question</th>
+      <th width="45%">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+    	<th scope="row">1</th>
+    	<td>Is this your first visit to our office</td>
+    	<td>
+    		<select name="student_q1" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="yes">Yes</option>
+				  <option value="no">No</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">2</th>
+		<td>How did you learn about our office</td>
+		<td>
+			<select name="student_q2" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Ombudsman">Ombudsman Website/ Outreach/ Tabling</option>
+					  <option value="Self">Self Referral</option>
+					  <option value="Friend">Friend/Colleague</option>
+					  <option value="Campus">Other Campus office/staff</option>
+					  <option value="other">Other</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">3</th>
+		<td>Your gender</td>
+		<td>
+			<select name="student_q3" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="man">Man</option>
+					  <option value="woman">Woman</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">3.a</th>
+		<td>Your preferred gender pronoun</td>
+		<td>
+			<select name="student_q4" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="man">Man</option>
+					  <option value="woman">Woman</option>
+					  <option value="Transgender">Transgender</option>
+					  <option value="Non-Confirming">Gender Non-Confirming</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">4</th>
+		<td>Your Racial/Ethnic Background</td>
+		<td>
+			<select name="student_q5" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Asian">Asian/Pacific Islander</option>
+					  <option value="Black">Black/African-American,non-Hispanic</option>
+					  <option value="Latino">Hispanic/Latino/a</option>
+					  <option value="Multi">Multiracial</option>
+					  <option value="Native">Native American</option>
+					  <option value="White">White,non-Hispanic</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">5</th>
+		<td>Are you an International student</td>
+		<td><select name="student_q6" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="yes">Yes</option>
+				  <option value="no">No</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">6</th>
+		<td>Which best describes your status at BU</td>
+		<td>
+			<select name="student_q7" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="freshman">Undergrad Freshman</option>
+				  <option value="Sophmore">Undergrad Sophmore</option>
+				  <option value="Junior">Undergrad Junior</option>
+				  <option value="Senior">Undergrad Senior</option>
+				  <option value="Masters">Graduate Student Masters</option>
+				  <option value="non-matric">Non Matriculated Student</option>
+				  <option value="Faculty">Faculty/UUP</option>
+				  <option value="UUP">Staff/UUP</option>
+				  <option value="CSEA">Staff/CSEA</option>
+				  <option value="Doctoral">Graduate Student Doctoral</option>
+				  <option value="Staff">Staff/Management Confidential</option>
+				  <option value="Research">Research Foundation</option>
+				  <option value="Parent">Parent/Family</option>
+				  <option value="Visitor">Visitor to Campus</option>
+				  <option value="Other">Other</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">7</th>
+		<td>School Affiliation</td>
+		<td>
+			<select name="student_q8" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="Community">College of Community &amp; Public Affairs</option>
+				  <option value="Nursing">Decker School of Nursing</option>
+				  <option value="Harpur">Harpur College of Arts &amp; Sciences</option>
+				  <option value="Pharmacy">School of Pharmacy</option>
+				  <option value="Education">School of Education</option>
+				  <option value="Management">School of Management</option>
+				  <option value="Watson">Watson Engineering</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">8</th>
+		<td>Would you be willing to coomplete an anonymous feedback survey to help us evaluate our services</td>
+		<td>
+			<select name="student_q9" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="yes">Yes</option>
+				  <option value="no">No</option>
+				</select>
+		</td>
+	</tr>
+    </tbody>
+    </table>
+
+
+    
+
+    <button class="btn btn-primary">Submit</button>
+
+	</div>
+</body>
+</html>
