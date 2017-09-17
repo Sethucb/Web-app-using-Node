@@ -50,7 +50,39 @@ th {
     text-align: center;
 }
 
+caption {
+    caption-side: top;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 .btn {
-    margin: 30px auto;
+    margin: 27px auto;
     display: block;
+}
+
+.btn-info {
+    position: absolute;
+    right: 300px;
+}
+
+.report-drop{
+ cursor: pointer;
+ width:150px;   
+}
+
+.rep {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.error{
+    clear: both;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    margin:20px auto;
+    display: none;
 }

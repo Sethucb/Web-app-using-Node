@@ -3,10 +3,12 @@
 <head>
 	<title>Ombudsman Form</title>
 
+	<!-- <link rel="icon" href="favicon.png"/> -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
@@ -28,9 +30,78 @@
 
 	<div class="container">
 
+<div class="report">
+	<div class = "rep" style="margin-left: 120px;">
+	<label>Start Month</label>
+	<select name="start_month" class="form-control report-drop">		    
+				  <option value="select">Select</option>
+				  <option value="Jan">January</option>
+				  <option value="Feb">February</option>
+				  <option value="Mar">March</option>
+				  <option value="Apr">April</option>
+				  <option value="May">May</option>
+				  <option value="Jun">June</option>
+				  <option value="Jul">July</option>
+				  <option value="Aug">August</option>
+				  <option value="Sep">September</option>
+				  <option value="Oct">October</option>
+				  <option value="Nov">November</option>
+				  <option value="Dec">December</option>
+	</select>
+	</div>
+	<div class = "rep">
+		<label>Start Year</label>
+		<select name="start_year" class="form-control report-drop">		    
+						  <option value="select">Select</option>
+						  <option value="16">2016</option>
+						  <option value="17">2017</option>
+						  <option value="18">2018</option>
+						  <option value="19">2019</option>
+						  <option value="20">2020</option>
+						  <option value="21">2021</option>
+		</select>
+		</div>
+
+	<div class = "rep">
+		<label>End Month</label>
+		<select name="end_month" class="form-control report-drop">		    
+					  <option value="select">Select</option>
+					  <option value="Jan">January</option>
+					  <option value="Feb">February</option>
+					  <option value="Mar">March</option>
+					  <option value="Apr">April</option>
+					  <option value="May">May</option>
+					  <option value="Jun">June</option>
+					  <option value="Jul">July</option>
+					  <option value="Aug">August</option>
+					  <option value="Sep">September</option>
+					  <option value="Oct">October</option>
+					  <option value="Nov">November</option>
+					  <option value="Dec">December</option>
+		</select>
+	</div>
+	<div class = "rep">
+		<label>End Year</label>
+		<select name="end_year" class="form-control report-drop">		    
+						  <option value="select">Select</option>
+						  <option value="17">2017</option>
+						  <option value="18">2018</option>
+						  <option value="19">2019</option>
+						  <option value="20">2020</option>
+						  <option value="21">2021</option>
+		</select>
+	</div>
+	<!-- <div class="rep"> -->
+		<button class="btn btn-info">Download csv file</button>
+	<!-- </div> -->
+</div>
+
+<div class="error">
+<!-- heErrorrrerr er -->
+</div>
 	
 <table class="table table-hover table-bordered">
-
+<caption>Student entries</caption>
   <thead>
     <tr>
       <th class="text-center" width="10%" >Number</th>
@@ -73,6 +144,7 @@
 					  <option value="select">Select</option>
 					  <option value="man">Man</option>
 					  <option value="woman">Woman</option>
+					  <option value="trans">Transgender</option>
 					  <option value="other">Other</option>
 					</select>
 		</td>
@@ -83,17 +155,16 @@
 		<td>
 			<select name="student_q4" class="form-control">		    
 					  <option value="select">Select</option>
-					  <option value="man">Man</option>
-					  <option value="woman">Woman</option>
-					  <option value="Transgender">Transgender</option>
-					  <option value="Non-Confirming">Gender Non-Confirming</option>
+					  <option value="he">He/Him/His</option>
+					  <option value="she">She/Her/Hers</option>
+					  <option value="they">They/Their/Theirs</option>
 					  <option value="other">Other</option>
 					</select>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">4</th>
-		<td>Your Racial/Ethnic Background</td>
+		<td>Your Ethnic Background</td>
 		<td>
 			<select name="student_q5" class="form-control">		    
 					  <option value="select">Select</option>
@@ -103,6 +174,7 @@
 					  <option value="Multi">Multiracial</option>
 					  <option value="Native">Native American</option>
 					  <option value="White">White,non-Hispanic</option>
+					  <option value="mena">MENA</option>
 					  <option value="other">Other</option>
 					</select>
 		</td>
@@ -170,9 +242,208 @@
 	</tr>
     </tbody>
     </table>
+<br>
+<br>
 
-
+<table class="table table-hover table-bordered">
+<caption>Office entries</caption>
+  <thead>
+    <tr>
+      <th class="text-center" width="10%" >Number</th>
+      <th width="45%">Question</th>
+      <th width="45%">Options</th>
+    </tr>
+  </thead>
+  <tbody>
     
+    <tr>
+    	<th scope="row">1</th>
+    	<td>Month</td>
+    	<td>
+    		<select name="office_q1" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="Jan">January</option>
+				  <option value="Feb">February</option>
+				  <option value="Mar">March</option>
+				  <option value="Apr">April</option>
+				  <option value="May">May</option>
+				  <option value="Jun">June</option>
+				  <option value="Jul">July</option>
+				  <option value="Aug">August</option>
+				  <option value="Sep">September</option>
+				  <option value="Oct">October</option>
+				  <option value="Nov">November</option>
+				  <option value="Dec">December</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">2</th>
+		<td>Year</td>
+		<td>
+			<select name="office_q2" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="17">2017</option>
+					  <option value="18">2018</option>
+					  <option value="19">2019</option>
+					  <option value="20">2020</option>
+					  <option value="21">2021</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">3</th>
+		<td>Division Affiliation</td>
+		<td>
+			<select name="office_q3" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Student">Student Affairs</option>
+					  <option value="External">External Affairs</option>
+					  <option value="Administrative">Administrative Affairs</option>
+					  <option value="Research">Research Division</option>
+					  <option value="Academic">Academic Affairs</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row">4.a</th>
+		<td>Primary Issues</td>
+		<td>
+			<select name="office_q4" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Student">CB - Compensation &amp; Benefits</option>
+					  <option value="External">ER - Evaluative Relationships</option>
+					  <option value="Administrative">PCR - Peer &amp; Colleague Relationships</option>
+					  <option value="Research">CPD - Career Progression &amp; Development</option>
+					  <option value="Academic">APD - Academic Progression &amp; Development</option>
+					  <option value="other">LRFC - Legal, Regulatory, Financial &amp; Compliance</option>
+					  <option value="other">SHPE - Safety, Health &amp; Physical Environment</option>
+					  <option value="other">SRA - Services, Resources &amp; Administrative</option>
+					  <option value="other">ISM - Organizational, Strategic &amp; Mission</option>
+					  <option value="other">VES - Values, Ethics &amp; Standards</option>
+					  <option value="other">HD - Harassment or Discrimination</option>
+					  <option value="other">INFO - Information Request</option>
+					  <option value="other">OFC - Off-Campus</option>
+					  <option value="other">OTH - Other</option>
+			</select>
+
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row">4.b</th>
+		<td>Secondary Issues</td>
+		<td>
+			<select name="office_q5" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Student">CB - Compensation &amp; Benefits</option>
+					  <option value="External">ER - Evaluative Relationships</option>
+					  <option value="Administrative">PCR - Peer &amp; Colleague Relationships</option>
+					  <option value="Research">CPD - Career Progression &amp; Development</option>
+					  <option value="Academic">APD - Academic Progression &amp; Development</option>
+					  <option value="other">LRFC - Legal, Regulatory, Financial &amp; Compliance</option>
+					  <option value="other">SHPE - Safety, Health &amp; Physical Environment</option>
+					  <option value="other">SRA - Services, Resources &amp; Administrative</option>
+					  <option value="other">ISM - Organizational, Strategic &amp; Mission</option>
+					  <option value="other">VES - Values, Ethics &amp; Standards</option>
+					  <option value="other">HD - Harassment or Discrimination</option>
+					  <option value="other">INFO - Information Request</option>
+					  <option value="other">OFC - Off-Campus</option>
+					  <option value="other">OTH - Other</option>
+			</select>
+
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row">4.c</th>
+		<td>Tertiary Issues</td>
+		<td>
+			<select name="office_q6" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Student">CB - Compensation &amp; Benefits</option>
+					  <option value="External">ER - Evaluative Relationships</option>
+					  <option value="Administrative">PCR - Peer &amp; Colleague Relationships</option>
+					  <option value="Research">CPD - Career Progression &amp; Development</option>
+					  <option value="Academic">APD - Academic Progression &amp; Development</option>
+					  <option value="other">LRFC - Legal, Regulatory, Financial &amp; Compliance</option>
+					  <option value="other">SHPE - Safety, Health &amp; Physical Environment</option>
+					  <option value="other">SRA - Services, Resources &amp; Administrative</option>
+					  <option value="other">ISM - Organizational, Strategic &amp; Mission</option>
+					  <option value="other">VES - Values, Ethics &amp; Standards</option>
+					  <option value="other">HD - Harassment or Discrimination</option>
+					  <option value="other">INFO - Information Request</option>
+					  <option value="other">OFC - Off-Campus</option>
+					  <option value="other">OTH - Other</option>
+			</select>
+
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row">5</th>
+		<td>Initial Visit</td>
+		<td>
+			<select name="office_q7" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Person">In-Person Visit</option>
+					  <option value="mail">E-mail</option>
+					  <option value="Telephone">Telephone</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">6</th>
+		<td>Perceived Locus of Problem</td>
+		<td>
+			<select name="office_q8" class="form-control">		    
+					  <option value="select">Select</option>
+					  <option value="Individual">Individual</option>
+					  <option value="Departmental">Departmental/Program</option>
+					  <option value="Division">Division/School</option>
+					  <option value="University">University</option>
+					  <option value="Suny">Suny</option>
+					  <option value="Off">Off Campus</option>
+					  <option value="other">Other</option>
+					</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">8</th>
+		<td>Action</td>
+		<td><select name="office_q9" class="form-control">		    
+				  <option value="select">Select</option>
+				  <option value="Inquiry">Inquiry Only (information or referral)</option>
+				  <option value="Consultation">Consultation Only (issue identification &amp; discussion of options)</option>
+				  <option value="Intervention">Consultation &amp; Intervention (informal inquiry, facilitated conversation, shuttle diplomacy)</option>
+				</select>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">9</th>
+		<td>Complexity Scale</td>
+		<td>
+			<select name="office_q10" class="form-control">	
+				  <option value="select">Select</option>	    
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				  <option value="8">8</option>
+				  <option value="9">9</option>
+				  <option value="10">10</option>
+				</select>
+		</td>
+	</tr>
+	
+    </tbody>
+    </table>    
 
     <button class="btn btn-primary">Submit</button>
 
