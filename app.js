@@ -17,10 +17,10 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 var db;
 
 dbconnect.init().then(function(data){
-		if(data){
-			db = data;
-			dbconnect.questCollect(data);
-		}
+	if(data){
+		db = data;
+		dbconnect.questCollect(data);
+	}
 	}).catch(function(err){
 		console.log(err);
 });
@@ -30,17 +30,18 @@ app.get('/',function(req,res){
 });
 
 app.post('/form',function(req,res){	
-	console.log('Request ++++');	
+	// console.log('Request ++++');	
 	let obj = req.body;
-	db.collection("Ombudsman_Entries").insert(obj);
+	obj['dateEntry'] = new Date(obj.office_q1 + ',' + obj.office_q2);
+	db.collection('Ombudsman_Entries').insert(obj);
 	// res.writeHead(200, {'Content-Type':'text/plain'});
-	// res.send(req);
+	// res.send();
 });
 
 app.post('/report',function(req,res){
-	let obj = req.body;
-	console.log('Request rece==== '+ obj.start_year);
-	// console.log('ob is '+ obj.beginDate + ' end is '+obj.endDate);
+	let date = req.body;
+	// console.log('Request rece==== '+ date.start+' end is '+ date.end);
+	dbconnect.reportCollect(db,date);
 });
 
 app.listen(3000,function(){

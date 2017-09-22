@@ -6,6 +6,8 @@
   "dependencies": {
     "body-parser": "^1.18.1",
     "express": "^4.0.0",
+    "json2xls": "^0.1.2",
+    "mongo-xlsx": "^1.0.12",
     "serve-favicon": "^2.4.4"
   },
   "devDependencies": {},
