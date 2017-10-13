@@ -59,12 +59,16 @@ caption {
 
 .btn {
     margin: 27px auto;
-    display: block;
+    /*display: block;*/
 }
 
 .btn-info {
     position: absolute;
-    right: 300px;
+    right: 350px;
+}
+
+.btn-btm {
+    text-align: center;
 }
 
 .report-drop{

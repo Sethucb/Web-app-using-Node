@@ -1,11 +1,45 @@
-$(function(){
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-	let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function checkDates(){
+	return new Promise(function(resolve,reject){
+		let dates = {};
+		$('.rep option:selected').each(function(index,val){
+			let value = val.innerHTML;
+			if(value === 'Select'){
+				// console.log('INSIDE reject');
+				if(!$('div.error:contains("fields")').length){
+					$('<p>Error : Please enter all the fields</p>').appendTo('.error');
+					$('.error').show();
+				}
+				return false;
+			}
+			if(index === 0){
+				dates['start_month'] = months[val.index-1];
+			}
+			else if(index === 1){
+				dates['start_year'] = value;
+			}
+			else if(index === 2){
+				dates['end_month'] = months[val.index-1];
+			}
+			else{
+				dates['end_year'] = value;
+			}
+		});
+		console.log('dates is ',dates);
+		if(Object.keys(dates).length === 4){
+			$('.error p').html('');
+			resolve(dates);
+		}		
+	});
+}
+
+$(function(){	
 
 	$('.btn-primary').click(function(){		
 		
 		let obj = {};
-		$('td .form-control option:selected').each(function(ele,value){
+		$('td .form-control option:selected').each(function(index,value){
 			let val = value.innerHTML;
 			if(val == 'Select'){
 				val = '';
@@ -42,57 +76,52 @@ $(function(){
 
 	$('.btn-info').click(function(){
 
-		let dates = {};
-		$('.rep option:selected').each(function(index,val){
-			let value = val.innerHTML;
-			if(value === 'Select'){
-				if(!$('div.error:contains("fields")').length){
-					$('<p>Error : Please enter all the fields</p>').appendTo('.error');
+		checkDates().then(function(dates){
+			console.log('RESOLVED');
+			// $('.error').hide();
+			$('.error p').html('');
+			datesPromise(dates).then(function(data){
+				// $('.error').hide();
+				$('.error p').html('');
+				// toDateString .getMonth()
+				console.log('GOI into ajax');
+				// console.log('date is ',data);
+
+				$.ajax({
+					url: "/report",
+					type: "POST",
+					data: data,
+					// responseType: 'arraybuffer',
+					success: function(data,status,xhr){
+						// $window.open('/download'); //does the download
+						console.log('Success recieved');
+						console.log('dat is '+data);
+						var url = "http://127.0.0.1:3000/download";
+						// window.open(url,'_blank');
+						
+						/* set up async GET request */
+						var req = new XMLHttpRequest();
+						req.open("GET", url, true);
+
+						req.onload = function(e) {
+						  console.log('Loaded');
+						}
+						req.send();							
+					},
+					error: function(err){
+						console.log('ERROR===');
+						// window.location = 'Ombudsman_Report.xlsx';
+						console.log(err.responseText);
+					}	
+				});
+
+				// $('select').val('select');
+			}).catch(function(err){
+				if(!$('div.error:contains("date")').length){
+					$('<p>Error : '+ err + '</p>').appendTo('.error');
 					$('.error').show();
 				}
-				return false;
-			}
-			if(index === 0){
-				dates['start_month'] = months[val.index-1];
-			}
-			else if(index === 1){
-				dates['start_year'] = value;
-			}
-			else if(index === 2){
-				dates['end_month'] = months[val.index-1];
-			}
-			else{
-				dates['end_year'] = value;
-			}
-			if(Object.keys(dates).length === 4){
-					// $('.error').hide();
-					$('.error p').html('');
-					datesPromise(dates).then(function(data){
-						// $('.error').hide();
-						$('.error p').html('');
-						// toDateString .getMonth()
-						console.log('GOI into ajax');
-						// console.log('date is '+dates.start_month);
-						$.ajax({
-							url: "/report",
-							type: "POST",
-							data: data,
-							dataType: "application/json",
-							success: function(data){
-								console.log('Success recieved');
-							},
-							error: function(err){
-								console.log('Error is ',err);
-							}	
-						});
-						// $('select').val('select');
-					}).catch(function(err){
-						if(!$('div.error:contains("date")').length){
-							$('<p>Error : '+ err + '</p>').appendTo('.error');
-							$('.error').show();
-						}						
-					});
-			}
+			});	
 		});
 	});
 
@@ -102,7 +131,7 @@ $(function(){
 		
 		return new Promise(function(resolve,reject){
 			if(start < end){
-				console.log('Good');
+				console.log('Good');	
 				resolve({
 					start: start.toLocaleDateString(),
 					end: end.toLocaleDateString()
@@ -112,6 +141,30 @@ $(function(){
 				console.log('Badddd');
 				reject('Please enter end date bigger than start date');
 			}
+		});
+	}
+
+	let reportsPromise = function(dates){
+		return new Promise(function(resolve,reject){
+			datesPromise(dates).then(function(date){
+				console.log('Yeahhh');
+				let obj = {};
+				$('td .form-control option:selected').each(function(index,value){
+					let val = value.innerHTML;
+					if(val == 'Select'){
+						return true;
+		 	 		}
+		 	 		let name = value.parentElement.name;
+		 	 		obj[name] = val;
+				});
+				obj.dateEntry = date;
+				console.log('obj is ',obj);
+				resolve(obj);
+			}).
+			catch(function(err){
+				console.log('Oh noooo');
+				reject('Please enter end date bigger than start date');
+			});
 		});
 	}
 

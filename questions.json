@@ -1,5 +1,4 @@
-{
-	"questions": {
+ {
 		"student_q1": "Is this Your First Visit to our office?",
 		"student_q2": "How did you learn about our office?",
 		"student_q3": "Your Gender",
@@ -15,10 +14,8 @@
 		"office_q4": "Primary Issue",
 		"office_q5": "Secondary Issue",
 		"office_q6": "Tertiary Issue",
-		"office_q7": "Initial visit information conveyed by:",
+		"office_q7": "Initial visit information conveyed by",
 		"office_q8": "Perceived locus of problem:",
 		"office_q9": "Resulting Action",
-		"office_q10": "Complexity Scale",
-		"dateEntry": ""
+		"office_q10": "Complexity Scale"
 	}
-}

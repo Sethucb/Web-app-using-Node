@@ -3,6 +3,8 @@ var path = require('path');
 var fs = require('fs');
 var dbconnect = require('./connect.js');
 var favicon = require('serve-favicon');
+var json2xls = require('json2xls');
+var XLSX = require('xlsx');
 var bodyParser = require('body-parser');
 
 
@@ -12,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
-
+app.use(json2xls.middleware);
 
 var db;
 
@@ -40,8 +42,25 @@ app.post('/form',function(req,res){
 
 app.post('/report',function(req,res){
 	let date = req.body;
+	// console.log('data us ',date);
 	// console.log('Request rece==== '+ date.start+' end is '+ date.end);
-	dbconnect.reportCollect(db,date);
+	dbconnect.reportCollect(db,date,function(xls){
+		xlsObj = xls;
+		res.writeHead(200, {'Content-Type':'text/plain'});
+		res.end('It worked');
+	});
+});
+
+var xlsObj;
+// var wrkbook;
+app.get('/download',function(req, res) {
+	console.log('GOFORIT');
+	let fileName = 'Ombudsman_Report.xlsx';
+	res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename='+fileName);
+	res.download(fileName);
+	// res.end(new Buffer(xlsObj, 'binary'));
+	
 });
 
 app.listen(3000,function(){
