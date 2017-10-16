@@ -58,9 +58,19 @@ app.get('/download',function(req, res) {
 	let fileName = 'Ombudsman_Report.xlsx';
 	res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', 'attachment; filename='+fileName);
-	res.download(fileName);
-	// res.end(new Buffer(xlsObj, 'binary'));
+	// res.download(fileName);
+	res.end(new Buffer(xlsObj, 'binary'));
 	
+});
+
+app.post('/filteredreport',function(req,res){
+	// console.log(req.body);
+	let filter = req.body;
+	dbconnect.filteredreport(db,filter,function(xls){
+		xlsObj = xls;
+		res.writeHead(200, {'Content-Type':'text/plain'});
+		res.end('It worked');
+	});
 });
 
 app.listen(3000,function(){

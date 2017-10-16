@@ -93,28 +93,16 @@ $(function(){
 					data: data,
 					// responseType: 'arraybuffer',
 					success: function(data,status,xhr){
-						// $window.open('/download'); //does the download
 						console.log('Success recieved');
 						console.log('dat is '+data);
 						var url = "http://127.0.0.1:3000/download";
-						// window.open(url,'_blank');
-						
-						/* set up async GET request */
-						var req = new XMLHttpRequest();
-						req.open("GET", url, true);
-
-						req.onload = function(e) {
-						  console.log('Loaded');
-						}
-						req.send();							
+						window.open(url,'_blank');					
 					},
 					error: function(err){
 						console.log('ERROR===');
-						// window.location = 'Ombudsman_Report.xlsx';
 						console.log(err.responseText);
 					}	
 				});
-
 				// $('select').val('select');
 			}).catch(function(err){
 				if(!$('div.error:contains("date")').length){
@@ -144,6 +132,39 @@ $(function(){
 		});
 	}
 
+	$('.btn-secondary').click(function(){
+		checkDates().then(function(dates){
+			console.log("date check over +++");
+			reportsPromise(dates).then(function(filterObject){
+				console.log('obj is ',filterObject);
+				$.ajax({
+					url: "/filteredreport",
+					type: "POST",
+					data: filterObject,
+					// responseType: 'arraybuffer',
+					success: function(data,status,xhr){
+						// $window.open('/download'); //does the download
+						console.log('Success recieved');
+						console.log('dat is '+data);
+						var url = "http://127.0.0.1:3000/download";
+						window.open(url,'_blank');
+					},
+					error: function(err){
+						console.log('ERROR===');
+						// window.location = 'Ombudsman_Report.xlsx';
+						console.log(err.responseText);
+					}	
+				});
+			}).
+			catch(function(err){
+				if(!$('div.error:contains("date")').length){
+					$('<p>Error : '+ err + '</p>').appendTo('.error');
+					$('.error').show();
+				}
+			});
+		});
+	});
+
 	let reportsPromise = function(dates){
 		return new Promise(function(resolve,reject){
 			datesPromise(dates).then(function(date){
@@ -158,7 +179,7 @@ $(function(){
 		 	 		obj[name] = val;
 				});
 				obj.dateEntry = date;
-				console.log('obj is ',obj);
+				// console.log('obj is ',obj);
 				resolve(obj);
 			}).
 			catch(function(err){
