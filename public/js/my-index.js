@@ -47,6 +47,7 @@ $(function(){
  	 		let name = value.parentElement.name;
  	 		obj[name] = val;
 		});
+		// Check if month and year are provided
 		// if(obj.office_q1 === '' || obj.office_q2 === ''){
 		// 	if(!$('div.error:contains("month")').length){
 		// 		$('<p>Error : Please enter month and year</p>').appendTo('.error');
@@ -91,7 +92,6 @@ $(function(){
 					url: "/report",
 					type: "POST",
 					data: data,
-					// responseType: 'arraybuffer',
 					success: function(data,status,xhr){
 						console.log('Success recieved');
 						console.log('dat is '+data);
@@ -151,7 +151,6 @@ $(function(){
 					},
 					error: function(err){
 						console.log('ERROR===');
-						// window.location = 'Ombudsman_Report.xlsx';
 						console.log(err.responseText);
 					}	
 				});

@@ -1,23 +1,28 @@
-var express = require('express');
-var path = require('path');
-var fs = require('fs');
-var dbconnect = require('./connect.js');
-var favicon = require('serve-favicon');
-var json2xls = require('json2xls');
-var XLSX = require('xlsx');
-var bodyParser = require('body-parser');
+'use strict';
 
+/*************External dependencies*************/
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const favicon = require('serve-favicon');
+const json2xls = require('json2xls');
+const bodyParser = require('body-parser');
+
+/*************Internal dependencies*************/
+const dbconnect = require('./connect.js');
+
+/*************MiddleWares*********************/
 
 const app = express();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(json2xls.middleware);
 
-var db;
+/*************App setup**********************/
 
+let db;
 dbconnect.init().then(function(data){
 	if(data){
 		db = data;
@@ -27,8 +32,14 @@ dbconnect.init().then(function(data){
 		console.log(err);
 });
 
+app.listen(3000,function(){
+	console.log('Listening on port 3000');
+});
+
+/*************Route Handlers****************/
+
 app.get('/',function(req,res){
-	res.sendfile(path.join(__dirname+'/index.html'));
+	res.sendfile(path.join(__dirname+'/views/index.html'));
 });
 
 app.post('/form',function(req,res){	
@@ -52,7 +63,7 @@ app.post('/report',function(req,res){
 });
 
 var xlsObj;
-// var wrkbook;
+
 app.get('/download',function(req, res) {
 	console.log('GOFORIT');
 	let fileName = 'Ombudsman_Report.xlsx';
@@ -73,6 +84,4 @@ app.post('/filteredreport',function(req,res){
 	});
 });
 
-app.listen(3000,function(){
-	console.log('Listening on port 3000');
-})
+

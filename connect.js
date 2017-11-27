@@ -1,10 +1,11 @@
-var MongoClient = require('mongodb').MongoClient;
-var questJson = require('./questions.json');
-var json2xls = require('json2xls');
-var fs = require('fs');
+'use strict';
 
-var uri = 'mongodb://localhost:27017/Ombudsman';
-// app.use(json2xls.middleware);
+const MongoClient = require('mongodb').MongoClient;
+const questJson = require('./questions.json');
+const json2xls = require('json2xls');
+const fs = require('fs');
+
+const uri = 'mongodb://localhost:27017/Ombudsman';
 
 module.exports = {	
 	init : function(){
@@ -21,8 +22,12 @@ module.exports = {
 
 	questCollect : function(db){
 		db.createCollection('Ombudsman_Entries', function(err, collection){
-		   if (err) throw err;
+		   if (err) {
+		   	throw err;
+		   }
+		   else{
 		   	console.log("Created testCollection");
+			}
 		});
 	},
 
@@ -37,13 +42,14 @@ module.exports = {
 		let arr = [];
 		cursor.then(function(data){
 			arr.unshift(questJson);
-			// console.log('cusr len is '+ data.length);
 			// console.log('dat is ',data);
-			for(i in data){
-				// console.log(data[i]);
-				delete data[i].dateEntry;
-				delete data[i]._id;
-				arr.push(data[i]);
+			for(let ind of data){
+				if(typeof ind === 'undefined' || typeof ind === 'null'){
+					continue;
+				}
+				delete ind.dateEntry;
+				delete ind._id;
+				arr.push(ind);
 			}
 			let xls = json2xls(arr);
 			return xls;
@@ -66,11 +72,14 @@ module.exports = {
 		var cursor = db.collection('Ombudsman_Entries').find(filter).sort({ 'dateEntry': 1 }).toArray();
 		let arr = [];
 		cursor.then(function(data){
-			for (i in data){
-				console.log('is is ',data[i]);
-				delete data[i].dateEntry;
-				delete data[i]._id;
-				arr.push(data[i]);
+			arr.unshift(questJson);
+			for (let ind of data){
+				if(typeof ind === 'undefined' || typeof ind === 'null'){
+					continue;
+				}
+				delete ind.dateEntry;
+				delete ind._id;
+				arr.push(ind);
 			}
 			let xls = json2xls(arr);
 			callback(xls);
