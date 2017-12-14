@@ -67,7 +67,6 @@ module.exports = {
 				$lte: new Date(filter.dateEntry.end)
 		}
 		filter.dateEntry = dateEntry;
-		// delete filter.dateEntry;
 		// console.log('filter i s +++  ',filter);
 		var cursor = db.collection('Ombudsman_Entries').find(filter).sort({ 'dateEntry': 1 }).toArray();
 		let arr = [];

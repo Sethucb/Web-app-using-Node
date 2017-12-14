@@ -6,7 +6,6 @@ function checkDates(){
 		$('.rep option:selected').each(function(index,val){
 			let value = val.innerHTML;
 			if(value === 'Select'){
-				// console.log('INSIDE reject');
 				if(!$('div.error:contains("fields")').length){
 					$('<p>Error : Please enter all the fields</p>').appendTo('.error');
 					$('.error').show();
@@ -26,7 +25,7 @@ function checkDates(){
 				dates['end_year'] = value;
 			}
 		});
-		console.log('dates is ',dates);
+		// console.log('dates is ',dates);
 		if(Object.keys(dates).length === 4){
 			$('.error p').html('');
 			resolve(dates);
@@ -48,13 +47,13 @@ $(function(){
  	 		obj[name] = val;
 		});
 		// Check if month and year are provided
-		// if(obj.office_q1 === '' || obj.office_q2 === ''){
-		// 	if(!$('div.error:contains("month")').length){
-		// 		$('<p>Error : Please enter month and year</p>').appendTo('.error');
-		// 		$('.error').show();
-		// 	}
-		// 	return false;
-		// }
+		if(obj.office_q1 === '' || obj.office_q2 === ''){
+			if(!$('div.error:contains("month")').length){
+				$('<p>Error : Please enter month and year</p>').appendTo('.error');
+				$('.error').show();
+			}
+			return false;
+		}
 		$.ajax({
 			url: '/form',
 			type: "POST",
@@ -69,7 +68,6 @@ $(function(){
 		});
 		alert("You have submitted the form");
 		// Defaults to Select
-		// console.log('herer esjdfnskdnff');
 		$('select').val('select');
 		$('.error p').html('');
 	});
@@ -79,14 +77,11 @@ $(function(){
 
 		checkDates().then(function(dates){
 			console.log('RESOLVED');
-			// $('.error').hide();
 			$('.error p').html('');
 			datesPromise(dates).then(function(data){
-				// $('.error').hide();
 				$('.error p').html('');
 				// toDateString .getMonth()
 				console.log('GOI into ajax');
-				// console.log('date is ',data);
 
 				$.ajax({
 					url: "/report",
@@ -103,7 +98,7 @@ $(function(){
 						console.log(err.responseText);
 					}	
 				});
-				// $('select').val('select');
+				$('select').val('select');
 			}).catch(function(err){
 				if(!$('div.error:contains("date")').length){
 					$('<p>Error : '+ err + '</p>').appendTo('.error');
@@ -119,29 +114,28 @@ $(function(){
 		
 		return new Promise(function(resolve,reject){
 			if(start < end){
-				console.log('Good');	
+				// console.log('Dates are valid');	
 				resolve({
 					start: start.toLocaleDateString(),
 					end: end.toLocaleDateString()
 				});
 			}
 			else{
-				console.log('Badddd');
-				reject('Please enter end date bigger than start date');
+				// console.log('Invalid dates');
+				reject('Please enter end date greater than start date');
 			}
 		});
 	}
 
 	$('.btn-secondary').click(function(){
 		checkDates().then(function(dates){
-			console.log("date check over +++");
+			// console.log("date check over +++");
 			reportsPromise(dates).then(function(filterObject){
-				console.log('obj is ',filterObject);
+				// console.log('Filter is  is ',filterObject);
 				$.ajax({
 					url: "/filteredreport",
 					type: "POST",
 					data: filterObject,
-					// responseType: 'arraybuffer',
 					success: function(data,status,xhr){
 						// $window.open('/download'); //does the download
 						console.log('Success recieved');
@@ -150,7 +144,7 @@ $(function(){
 						window.open(url,'_blank');
 					},
 					error: function(err){
-						console.log('ERROR===');
+						// console.log('ERROR===');
 						console.log(err.responseText);
 					}	
 				});
@@ -167,7 +161,7 @@ $(function(){
 	let reportsPromise = function(dates){
 		return new Promise(function(resolve,reject){
 			datesPromise(dates).then(function(date){
-				console.log('Yeahhh');
+				// console.log('Valid dates');
 				let obj = {};
 				$('td .form-control option:selected').each(function(index,value){
 					let val = value.innerHTML;
@@ -182,10 +176,9 @@ $(function(){
 				resolve(obj);
 			}).
 			catch(function(err){
-				console.log('Oh noooo');
+				// console.log('Invalid dates');
 				reject('Please enter end date bigger than start date');
 			});
 		});
 	}
-
 });

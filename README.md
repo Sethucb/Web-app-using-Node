@@ -1,2 +1,4 @@
 # Web-app-using-Node
-A basic form submission app using Node,Express and MongoDB
+A form submission app for Office use at University.
+
+Technologies used : HTML,CSS,JQuery,Bootstrap,Node,Express and MongoDB
