@@ -4,10 +4,11 @@
   "description": "Ombudsman form submission",
   "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.18.1",
-    "express": "^4.0.0",
-    "json2xls": "^0.1.2",
-    "serve-favicon": "^2.4.4",
+    "body-parser": "1.18.1",
+    "express": "4.0.0",
+    "json2xls": "0.1.2",
+    "serve-favicon": "2.4.4",
+    "mongodb": "2.2.33"
   },
   "devDependencies": {},
   "scripts": {

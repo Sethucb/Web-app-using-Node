@@ -65,7 +65,6 @@ app.post('/report',function(req,res){
 var xlsObj;
 
 app.get('/download',function(req, res) {
-	console.log('GOFORIT');
 	let fileName = 'Ombudsman_Report.xlsx';
 	res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', 'attachment; filename='+fileName);
