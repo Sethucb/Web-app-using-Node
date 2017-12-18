@@ -47,13 +47,11 @@ app.post('/form',function(req,res){
 	let obj = req.body;
 	obj['dateEntry'] = new Date(obj.office_q1 + ',' + obj.office_q2);
 	db.collection('Ombudsman_Entries').insert(obj);
-	// res.writeHead(200, {'Content-Type':'text/plain'});
-	// res.send();
+	res.send("");
 });
 
 app.post('/report',function(req,res){
 	let date = req.body;
-	// console.log('data us ',date);
 	// console.log('Request rece==== '+ date.start+' end is '+ date.end);
 	dbconnect.reportCollect(db,date,function(xls){
 		xlsObj = xls;

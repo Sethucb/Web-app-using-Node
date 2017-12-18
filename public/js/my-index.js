@@ -58,12 +58,12 @@ $(function(){
 			url: '/form',
 			type: "POST",
 			data: obj,
-			dataType: "application/json",
 			success: function(data){
 				console.log('Success recieved');
 			},
 			error: function(err){
 				console.log('Error is ',err);
+				// return;
 			}
 		});
 		alert("You have submitted the form");
@@ -148,6 +148,7 @@ $(function(){
 						console.log(err.responseText);
 					}	
 				});
+				$('select').val('select');
 			}).
 			catch(function(err){
 				if(!$('div.error:contains("date")').length){
